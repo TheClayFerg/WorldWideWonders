@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import './globals.css'
 
 var places = [
   [{ lat: 48.857597232823224,  lng: 2.294088407744251 },  {location: 'Eiffel Tower'}],
