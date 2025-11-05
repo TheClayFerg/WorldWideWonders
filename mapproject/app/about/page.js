@@ -11,7 +11,7 @@ export default function About() {
         <ul className="list-disc list-inside mt-2 mx-auto max-w-sm text-left">
           <li>You start at a random location in the world.</li>
           <li>Look around for signs, architecture, language, or terrain.</li>
-          <li>Click the arrows or click places on the screen to 'walk around'</li>
+          <li>Click the arrows or places on the screen to 'walk around'</li>
         </ul>
       </div>
       <p className="mt-6 text-md italic">Ready to test your geography skills? Let the journey begin!</p>
