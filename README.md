@@ -10,7 +10,7 @@
 
 **Contributors:**
 Clayton Ferguson
-Jaxon Ford - Git Engineer
+Jaxon Ford(Git Engineer)
 Trent Grooms
 Jenna Mickey
 Seth Staydohar
