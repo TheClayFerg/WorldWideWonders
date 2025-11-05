@@ -4,6 +4,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Added to rename the output and namespace -->
+    <AssemblyName>MapApi</AssemblyName>
+    <RootNamespace>MapApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

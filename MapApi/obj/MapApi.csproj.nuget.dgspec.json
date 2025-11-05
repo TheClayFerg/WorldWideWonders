@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\TodoApi.csproj": {}
+    "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\MapApi.csproj": {}
   },
   "projects": {
-    "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\TodoApi.csproj": {
+    "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\MapApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\TodoApi.csproj",
+        "projectUniqueName": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\MapApi.csproj",
         "projectName": "MapApi",
-        "projectPath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\TodoApi.csproj",
+        "projectPath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\MapApi.csproj",
         "packagesPath": "C:\\Users\\fordj\\.nuget\\packages\\",
         "outputPath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\obj\\",
         "projectStyle": "PackageReference",
