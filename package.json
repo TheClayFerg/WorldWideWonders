@@ -1,0 +1,21 @@
+{
+  "name": "worldwidewonders",
+  "version": "1.0.0",
+  "description": "0–100 m → 5,000 pts  \r 1 km away → 4,900 pts  \r 10 km away → 4,000 pts  \r 100 km away → 3,000 pts  \r 1,000 km away → 2,000 pts  \r 2,000–5,000 km away → 0–1,000 pts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheClayFerg/WorldWideWonders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TheClayFerg/WorldWideWonders/issues"
+  },
+  "homepage": "https://github.com/TheClayFerg/WorldWideWonders#readme"
+}
