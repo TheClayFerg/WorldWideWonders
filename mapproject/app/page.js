@@ -3,13 +3,11 @@ import { useEffect } from "react";
 
 var places = [
   [{ lat: 48.85175190901051,  lng: 2.2897615145195256 },  {location: 'Eiffel Tower Hotel'}],
-  [{ lat:  27.189965844854996,   lng: 78.02491566260896 },  {location: 'Taj Mahal Hotel'}],
   [{ lat: 41.88916503732436,   lng: 12.495807327200632}, {location: 'The Colosseum Hotel'}],
   [{ lat: -33.86332015348142, lng: 151.21184432020186 }, {location: 'Sydney Opera House Hotel'}],
   [{ lat: 43.72241521483225,   lng: 10.392064933294535}, {location: 'Leaning Tower of pisa Hotel'}],
   [{ lat: 51.499478209752645,  lng: -0.13307989206634516},  {location: 'Big Ben Hotel'}],
   [{ lat: 37.83746295614792,   lng: -122.47941782521923}, {location: 'Golden Gate Bridge Hotel'}],
-  [{ lat: 51.17314898703935,   lng: -1.7805022043434993}, {location: 'Stonehenge Hotel'}],
   [{ lat: 48.806942340957846,  lng: 2.133223974191376}, {location: 'Palace of Versailles Hotel'}],
   [{ lat: 35.36787231223111,   lng: 138.8610499351484}, {location: 'Mount Fuj Hotel'}],
   [{ lat: 20.694297159826963,  lng: -88.58618645865695}, {location: 'Chichen Itza Hotel'}]
@@ -18,13 +16,11 @@ var places = [
 
 var destination = [
   [{ lat: 48.857597232823224,  lng: 2.294088407744251 },  {location: 'Eiffel Tower'}],
-  [{ lat: 27.17849238917848,   lng: 78.04216550072019 },  {location: 'Taj Mahal'}],
   [{ lat: 41.89032514126806,   lng: 12.491846048954196 }, {location: 'The Colosseum'}],
   [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'Sydney Opera House'}],
   [{ lat: 43.722962919466866,  lng: 10.396104195604407}, {location: 'Leaning Tower of pisa'}],
   [{ lat: 51.50096740041798,   lng: -0.1241623357433608},  {location: 'Big Ben'}],
   [{ lat: 37.8276502293566,    lng: -122.48178307959817}, {location: 'Golden Gate Bridge'}],
-  [{ lat: 51.17917496531204,   lng: -1.8264100670974994}, {location: 'Stonehenge'}],
   [{ lat: 48.80368473709394,   lng: 2.124536265468451}, {location: 'Palace of Versailles'}],
   [{ lat: 35.36454630360458,   lng: 138.73307837316136}, {location: 'Mount Fuj'}],
   [{ lat: 20.68303868723637,   lng: -88.57213387301465}, {location: 'Chichen Itza'}]
