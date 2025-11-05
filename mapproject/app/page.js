@@ -1,65 +1,77 @@
-import Image from "next/image";
+"use client";
+import { useEffect } from "react";
 
-export default function Home() {
+var places = [
+  [{ lat: 48.857597232823224,  lng: 2.294088407744251 },  {location: 'Eiffel Tower'}],
+  [{ lat: 27.17849238917848,   lng: 78.04216550072019 },  {location: 'Taj Mahal'}],
+  [{ lat: 41.89032514126806,   lng: 12.491846048954196 }, {location: 'The Colosseum'}],
+  [{ lat: 40.68961188209687,   lng: -74.03961590742139 }, {location: 'Statue of Liberty'}],
+  [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'Sydney Opera House'}],
+  [{ lat: -22.951914723334223, lng: -43.210407416928525 }, {location: 'Christ the Redeemer'}],
+  [{ lat: 43.722962919466866,  lng: 10.396104195604407}, {location: 'Leaning Tower of pisa'}],
+  [{ lat: 51.50096740041798,   lng: -0.1241623357433608}, {location: 'Big Ben'}],
+  [{ lat: 37.8276502293566,    lng: -122.48178307959817}, {location: 'Golden Gate Bridge'}],
+  [{ lat: 30.337785999216255,  lng: 35.430390469199544},  {location: 'Petra'}],
+  [{ lat: 51.17917496531204,   lng: -1.8264100670974994}, {location: 'Stonehenge'}],
+  [{ lat: 48.80368473709394,   lng: 2.124536265468451}, {location: 'Palace of Versailles'}],
+  [{ lat: 35.36454630360458,   lng: 138.73307837316136}, {location: 'Mount Fuj'}],
+  [{ lat: 20.68303868723637,   lng: -88.57213387301465}, {location: 'Chichen Itza'}]
+]
+       
+let currentPlace = places[Math.floor(Math.random() * places.length)]; 
+let coordinates = currentPlace[0]
+let place = currentPlace[1].location
+
+export default function initialize() {
+  useEffect(() => {
+    let panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("street-view"),
+      {
+        position: coordinates,
+        pov: { heading: 165, pitch: 0 },
+        zoom: 1,
+      },
+    )
+    console.log(coordinates)
+  });
+
+  let reconfigure = () => {
+        let currentPlace = places[Math.floor(Math.random() * places.length)];
+        coordinates = currentPlace[0]
+        country = currentPlace[1].country
+
+        initialize()
+      }
+
+  function TrackingPlayer() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(pos => {
+      let player = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      let target = currentPlace.coords;
+
+      let distance = getDistanceInMeters(player, target);
+
+      document.getElementById("distance-display").innerText =
+        `Distance to target: ${distance.toFixed(1)} meters`;
+
+      if (distance < 50) { 
+        alert(`You found the final location: ${currentPlace.name}!`);
+      }
+    });
+  }
+}
+
+  
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div>
+      <div id="street-view" style={{ height: "400px"}} />
+      <div id="distance-display"></div>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
+        defer
+      ></script>
     </div>
-  );
+  )
 }
