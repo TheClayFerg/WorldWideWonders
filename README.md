@@ -7,3 +7,9 @@
 2,000–5,000 km away → 0–1,000 pts  
 
 Bytejam2025  
+
+make sure to commit by to your branch buy using the following git command:
+
+-- git switch "your branch name"
+
+please make a pull request to Development with capital D
