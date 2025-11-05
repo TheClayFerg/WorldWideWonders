@@ -6,4 +6,11 @@
 1,000 km away → 2,000 pts  
 2,000–5,000 km away → 0–1,000 pts  
 
-Bytejam2025  
+**Bytejam2025 - World Wide Wonders**
+
+**Contributors:**
+Clayton Ferguson
+Jaxon Ford - Git Engineer
+Trent Grooms
+Jenna Mickey
+Seth Staydohar
