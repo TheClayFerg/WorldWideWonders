@@ -8,8 +8,8 @@
 
 Bytejam2025  
 
-make sure to commit by to your branch buy using the following git command:
+make sure to commit by to your branch by using the following git command:
 
 -- git switch "your branch name"
 
-please make a pull request to Development with capital D
+please push to Development with capital D
