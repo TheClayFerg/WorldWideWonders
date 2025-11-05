@@ -1,65 +1,42 @@
-import Image from "next/image";
+"use client";
+import { useEffect } from "react";
 
-export default function Home() {
+var places = [
+  [{ lat: 48.858331276895534,  lng: 2.294497393252732 },  {location: 'Eiffel Tower'}],
+  [{ lat: 40.431928116361476,  lng: 116.57036953558242 }, {location: 'Great Wall of China'}],
+  [{ lat: 27.175140027735488,  lng: 78.04211537791211 },  {location: 'Taj Mahal'}],
+  [{ lat: 41.89021419341014,   lng: 12.492214806747267 }, {location: 'The Colosseum'}],
+  [{ lat: 40.689253467605596,  lng: -74.04450576441756 }, {location: 'Statue of Liberty'}],
+  [{ lat: -33.856744306896545, lng: 151.21529133558244 }, {location: 'Sydney Opera House'}],
+  [{ lat: 43.72294036955999,   lng: 10.396570177912112 }, {location: 'Leaning Tower of Pisa'}],
+  [{ lat: 37.81991513757875,   lng: -122.47857589325272}, {location: 'Golden Gate Bridge'}],
+]
+       
+let currentPlace = places[Math.floor(Math.random() * (places.length))]  
+currentPlace = places[2]
+let coordinates = currentPlace[0]
+let place = currentPlace[1].location
+
+export default function initialize() {
+  useEffect(() => {
+    let panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("street-view"),
+      {
+        position: coordinates,
+        pov: { heading: 165, pitch: 0 },
+        zoom: 1,
+      },
+    )
+    console.log(coordinates)
+  });
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div>
+      <div id="street-view" style={{ height: "400px"}} />
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
+        defer
+      ></script>
     </div>
-  );
+  )
 }
