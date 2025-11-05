@@ -12,7 +12,7 @@ var places = [
   [{ lat: 37.81991513757875,   lng: -122.47857589325272}, {location: 'Golden Gate Bridge'}],
 ]
        
-let currentPlace = places[Math.floor(Math.random() * (places.length))]  
+let currentPlace = places[Math.floor(Math.random() * places.length)]; 
 let coordinates = currentPlace[0]
 let place = currentPlace[1].location
 
@@ -29,9 +29,39 @@ export default function initialize() {
     console.log(coordinates)
   });
 
+  let reconfigure = () => {
+        let currentPlace = places[Math.floor(Math.random() * places.length)];
+        coordinates = currentPlace[0]
+        country = currentPlace[1].country
+
+        initialize()
+      }
+
+  function TrackingPlayer() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(pos => {
+      let player = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      let target = currentPlace.coords;
+
+      let distance = getDistanceInMeters(player, target);
+
+      document.getElementById("distance-display").innerText =
+        `Distance to target: ${distance.toFixed(1)} meters`;
+
+      if (distance < 50) { 
+        alert(`You found the final location: ${currentPlace.name}!`);
+      }
+    });
+  }
+}
+
+  
+
+
   return (
     <div>
       <div id="street-view" style={{ height: "400px"}} />
+      <div id="distance-display"></div>
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
         defer
