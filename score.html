@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Score</title>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        <nav>
-            <a href="map.html">Map</a>
-            <a href="login.html">Login</a>
-            <a href="#">Scores</a>
+        <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex space-x-6">
+                    <a href="map.html" class="text-xl front-semibold text-blue-800 transitior">Map</a>
+                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
+                    <p class="text-gray-700 font-medium text-blue-600 border-b-2 border-blue-600 pb-1">Scores</p>
+                </div>
+            </div>
         </nav>
         <main>
             <div>

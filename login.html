@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-        <nav>
-            <a href="map.html">Map</a>
-            <a href="#">Login</a>
-            <a href="score.html">Scores</a>
+    <body class="bg-gray-100 text-gray-900 font-sans">
+        <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex space-x-6">
+                    <a href="map.html" class="text-xl front-semibold text-blue-800 transitior">Map</a>
+                    <p class="text-gray-700 font-medium text-blue-600 border-b-2 border-blue-600 pb-1">Login</p>
+                    <a href="score.html" class="text-gray-700 hover:text-blue-600 transition">Scores</a>
+                </div>
+            </div>
         </nav>
-        <main>
-            <div>
-                <h1>Login</h1>
-                <form>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name"><br><br>
-                    <input type="submit" value="Login">
-                    <input type="submit" value="Continue as Guest">
+        <main class="flex justify-center items-center min-h-screen pt-20">
+            <div class="bg-white rounded-2xl shadow-lg w-full max-w-md p-8">
+                <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">Login</h1>
+                <form class="space-y-5">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
+                        <input type="text" id="name" name="name"><br><br>
+                        <input type="submit" value="Login">
+                        <input type="submit" value="Continue as Guest"> 
+                    </div>
+                    
                 </form>
             </div>
         </main>
