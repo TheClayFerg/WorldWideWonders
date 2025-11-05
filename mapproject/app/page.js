@@ -66,8 +66,24 @@ export default function initialize() {
 
   return (
     <div>
-      <div id="street-view" style={{ height: "400px"}} />
+      <body class="bg-gray-100 text-gray-900 front-sans">
+        <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex space-x-6">
+                    <p className="text-xl front-semibold text-blue-800 transitior">Map</p>
+                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
+                    <a href="score.html" class="text-gray-700 hover:text-blue-600 transition">Scores</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="pt-20 flex justify-center items-center min-h-screen">
+            <div id="street-view" class="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
+        </main>
+      </body>
+
       <div id="distance-display"></div>
+
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
         defer
