@@ -13,7 +13,6 @@ var places = [
 ]
        
 let currentPlace = places[Math.floor(Math.random() * (places.length))]  
-currentPlace = places[2]
 let coordinates = currentPlace[0]
 let place = currentPlace[1].location
 
