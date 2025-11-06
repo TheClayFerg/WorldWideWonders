@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z3vTu7jaSPQ=",
+  "dgSpecHash": "HnJN5w1hn8s=",
   "success": true,
-  "projectFilePath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\mapapi\\MapApi.csproj",
+  "projectFilePath": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fordj\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fordj\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
