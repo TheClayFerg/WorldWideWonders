@@ -117,6 +117,7 @@ function TestLocation(lat, lng) {
   let latDist = Math.abs(destination[0][0].lat - lat)
   let lngDist = Math.abs(destination[0][0].lng - lng)
   let difDist = latDist + lngDist
+  
   console.log(
     "\nlat distance: " + latDist + 
     "\nlng distance: " + lngDist + 
