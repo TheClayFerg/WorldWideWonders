@@ -33,6 +33,8 @@ let currentPlace = places[Math.floor(Math.random() * places.length)];
 let coordinates = currentPlace[0]
 let place = currentPlace[1].location
 
+let oldDifDist = 1
+
 export default function initialize() {
     useEffect(() => {
         // create panorama and store it on window so dropdown/random can control it later
@@ -93,6 +95,8 @@ export default function initialize() {
 
                 <NavBar />
 
+                <p id="hot-or-cold"></p>
+
                 <main className="pt-20 flex flex-col items-center min-h-screen">
                     {/* dropdown + random button */}
                     <div className="mb-4 flex gap-3 items-center">
@@ -129,4 +133,37 @@ export default function initialize() {
             ></script>
         </div>
     )
+}
+
+function TestLocation(lat, lng) {
+  // compare current coord with final and return 
+  //    if user hot or cold?
+  //    current distance from end?
+  //    if user is donen
+  let latDist = Math.abs(destination[round][0].lat - lat)
+  let lngDist = Math.abs(destination[round][0].lng - lng)
+  let difDist = latDist + lngDist
+  
+  console.log(
+    "\nlat distance: " + latDist + 
+    "\nlng distance: " + lngDist + 
+    "\ndifference: " + difDist
+  )
+
+  if ( difDist < 0.001 ) {
+    alert("You won!!!")
+  } 
+
+  HotOrCold(difDist);
+
+  oldDifDist = difDist
+}
+
+function HotOrCold(newer) {
+  const hintBox = document.getElementById("hot-or-cold")
+  if (newer > oldDifDist) {
+    hintBox.innerText = "Colder..."
+  } else if (oldDifDist > newer) {
+    hintBox.innerText = "Warmer..."
+  }
 }
