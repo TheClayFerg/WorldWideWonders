@@ -97,7 +97,7 @@ export default function initialize() {
 
                 <NavBar />
 
-                <p id="hot-or-cold"></p>
+                <p id="hot-or-cold" className="mt-20"></p>
 
                 <main className="pt-20 flex flex-col items-center min-h-screen">
                     {/* dropdown + random button */}
@@ -137,6 +137,7 @@ export default function initialize() {
     )
 }
 
+/*
 function TestLocation(lat, lng) {
   // compare current coord with final and return 
   let latDist = Math.abs(destination[round][0].lat - lat)
@@ -157,6 +158,7 @@ function TestLocation(lat, lng) {
 
   oldDifDist = difDist
 }
+  
 
 function HotOrCold(newer) {
   const hintBox = document.getElementById("hot-or-cold")
@@ -165,7 +167,7 @@ function HotOrCold(newer) {
   } else if (oldDifDist > newer) {
     hintBox.innerText = "Warmer..."
   }
-}
+}*/
 
 function TestLocation(lat, lng) {
   // compare current coord with final and return 
