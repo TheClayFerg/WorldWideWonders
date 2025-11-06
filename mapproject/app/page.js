@@ -71,14 +71,14 @@ export default function initialize() {
 
   return (
     <div>
-      <body className="bg-gray-100 text-gray-900 front-sans">
+      <div className="bg-gray-100 text-gray-900 front-sans">
         
         <NavBar />
 
         <main className="pt-20 flex justify-center items-center min-h-screen">
             <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
         </main>
-      </body>
+      </div>
 
       <div id="distance-display"></div>
 
