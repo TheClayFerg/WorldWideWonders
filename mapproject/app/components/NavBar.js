@@ -9,6 +9,8 @@ export default function NavBar() {
                 <a href="/login" className="text-slate-700 font-bold hover:text-blue-400 transition">Login</a>
                 <a href="/scores" className="text-slate-700 font-bold hover:text-blue-400 transition">Scores</a>
             </div>
+
+            <div className="text-4xl font-extrabold tracking-wide">World Explorer</div>
         </div>
     </nav>
   );
