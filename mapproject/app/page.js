@@ -135,23 +135,6 @@ export default function initialize() {
             ></script>
         </div>
     )
-        <NavBar />
-
-        <h3 id="hot-or-cold" className="pt-15">Distance</h3>
-
-        <main className="pt-20 flex justify-center items-center min-h-screen">
-            <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
-        </main>
-      </div>
-
-      <div id="distance-display"></div>
-
-      <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
-        defer
-      ></script>
-    </div>
-  )
 }
 
 function TestLocation(lat, lng) {
