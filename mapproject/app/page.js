@@ -123,9 +123,18 @@ function TestLocation(lat, lng) {
     "\nlng distance: " + lngDist + 
     "\ndifference: " + difDist
   )
+
   if ( difDist < 0.001 ) {
     console.log("You won!!!")
   } else {
     console.log("keep going...")
   }
+
+  HotOrCold(difDist)
+
+  let oldDifDist = difDist
+}
+
+function HotOrCold() {
+  
 }
