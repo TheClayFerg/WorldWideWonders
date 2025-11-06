@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MapApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a18b21659a5693b86110f053bda9b544e9309bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6677d135cef2126f94989111015fd10687b7832d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MapApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MapApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

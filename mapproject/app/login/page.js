@@ -1,4 +1,5 @@
 export default function About() {
+    
   return (
     <div class="bg-gray-100 text-gray-900 font-sans
                 bg-[url('../public/image/background.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
