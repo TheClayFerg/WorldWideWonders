@@ -115,9 +115,6 @@ export default function initialize() {
 
 function TestLocation(lat, lng) {
   // compare current coord with final and return 
-  //    if user hot or cold?
-  //    current distance from end?
-  //    if user is donen
   let latDist = Math.abs(destination[round][0].lat - lat)
   let lngDist = Math.abs(destination[round][0].lng - lng)
   let difDist = latDist + lngDist
