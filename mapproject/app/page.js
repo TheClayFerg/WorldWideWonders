@@ -86,7 +86,6 @@ export default function initialize() {
       </div>
 
       <div id="distance-display"></div>
-
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
         defer
