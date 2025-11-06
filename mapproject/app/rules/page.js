@@ -3,7 +3,8 @@ import NavBar from "../components/NavBar"
 export default function Rules() {
     return (
         <body class="bg-gray-100 text-gray-900 font-sans
-                bg-[url('../public/image/background.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                bg-cover bg-center bg-no-repeat bg-fixed
+                bg-[url('../public/image/mapcar.jpg')]">
 
         <NavBar />
 

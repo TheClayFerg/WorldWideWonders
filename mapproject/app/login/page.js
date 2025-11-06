@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <div className="bg-gray-100 text-gray-900 font-sans
                  bg-cover bg-center bg-no-repeat bg-fixed
-                 bg-[url('../public/image/mapcar.jpg')]">
+                 bg-[url('../public/image/mapdesk.jpg')]">
         
         <NavBar />
 
