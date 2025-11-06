@@ -34,9 +34,11 @@ var destination = [
 ]
 
 let round = Math.floor(Math.random() * places.length)
-let currentPlace = places[0]; // get a random starting location
+let currentPlace = places[round]; // get a random starting location
 let coordinates = currentPlace[0] // get the coordinates for that place
 let place = currentPlace[1].location // get the name for that place
+
+let oldDifDist = 1
 
 export default function initialize() {
   // google API imported code:
@@ -94,6 +96,8 @@ export default function initialize() {
         
         <NavBar />
 
+        <h3 id="hot-or-cold" className="pt-15">Distance</h3>
+
         <main className="pt-20 flex justify-center items-center min-h-screen">
             <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
         </main>
@@ -113,9 +117,9 @@ function TestLocation(lat, lng) {
   // compare current coord with final and return 
   //    if user hot or cold?
   //    current distance from end?
-  //    if user is done
-  let latDist = Math.abs(destination[0][0].lat - lat)
-  let lngDist = Math.abs(destination[0][0].lng - lng)
+  //    if user is donen
+  let latDist = Math.abs(destination[round][0].lat - lat)
+  let lngDist = Math.abs(destination[round][0].lng - lng)
   let difDist = latDist + lngDist
   
   console.log(
@@ -125,16 +129,19 @@ function TestLocation(lat, lng) {
   )
 
   if ( difDist < 0.001 ) {
-    console.log("You won!!!")
-  } else {
-    console.log("keep going...")
-  }
+    alert("You won!!!")
+  } 
 
-  HotOrCold(difDist)
+  HotOrCold(difDist);
 
-  let oldDifDist = difDist
+  oldDifDist = difDist
 }
 
-function HotOrCold() {
-  
+function HotOrCold(newer) {
+  const hintBox = document.getElementById("hot-or-cold")
+  if (newer > oldDifDist) {
+    hintBox.innerText = "Colder..."
+  } else if (oldDifDist > newer) {
+    hintBox.innerText = "Warmer..."
+  }
 }
