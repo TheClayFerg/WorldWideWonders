@@ -7,7 +7,6 @@ import './globals.css'
 
 
 var places = [
-  // starting locations
   [{ lat: 48.85175190901051,  lng: 2.2897615145195256 },  {location: 'Eiffel Tower Hotel'}],
   [{ lat: 41.88916503732436,   lng: 12.495807327200632}, {location: 'The Colosseum Hotel'}],
   [{ lat: -33.86332015348142, lng: 151.21184432020186 }, {location: 'Sydney Opera House Hotel'}],
@@ -21,7 +20,6 @@ var places = [
 ]
 
 var destination = [
-  // ending locations
   [{ lat: 48.857597232823224,  lng: 2.294088407744251 },  {location: 'Eiffel Tower'}],
   [{ lat: 41.89032514126806,   lng: 12.491846048954196 }, {location: 'The Colosseum'}],
   [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'Sydney Opera House'}],
@@ -33,66 +31,26 @@ var destination = [
   [{ lat: 20.68303868723637,   lng: -88.57213387301465}, {location: 'Chichen Itza'}]
 ]
 
-let round = Math.floor(Math.random() * places.length)
-let currentPlace = places[round]; // get a random starting location
-let coordinates = currentPlace[0] // get the coordinates for that place
-let place = currentPlace[1].location // get the name for that place
+let currentPlace = places[Math.floor(Math.random() * places.length)];
+let coordinates = currentPlace[0]
+let place = currentPlace[1].location
 
 let oldDifDist = 1
 
 export default function initialize() {
-  // google API imported code:
-  useEffect(() => {
-    // place the user
-    let panorama = new google.maps.StreetViewPanorama(
-      document.getElementById("street-view"),
-      {
-        position: coordinates,
-        pov: { heading: 165, pitch: 0 },
-        zoom: 1,
-      },
-    )
+    useEffect(() => {
+        // create panorama and store it on window so dropdown/random can control it later
+        let panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("street-view"),
+            {
+                position: coordinates,
+                pov: { heading: 165, pitch: 0 },
+                zoom: 1,
+            },
+        );
+        window._panorama = panorama;
 
-    panorama.addListener("position_changed", () => {
-      TestLocation(panorama.getPosition().lat(), panorama.getPosition().lng());
-    })
-    
-    console.log("coordinates: " + coordinates.lat + ", " + coordinates.lng)
-  });
-
-  // reset the game with new data???????????????????????????
-  let reconfigure = () => {
-        let currentPlace = places[Math.floor(Math.random() * places.length)];
-        coordinates = currentPlace[0]
-        country = currentPlace[1].country
-
-        initialize()
-      }
-
-  function TrackingPlayer() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(pos => {
-      let player = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-      let target = currentPlace.coords;
-
-      let distance = getDistanceInMeters(player, target);
-
-      document.getElementById("distance-display").innerText =
-        `Distance to target: ${distance.toFixed(1)} meters`;
-
-      if (distance < 50) { 
-        alert(`You found the final location: ${currentPlace.name}!`);
-      }
-    });
-  }
-}
-
-  
-
-
-  return (
-    <div>
-      <div className="bg-gray-100 text-gray-900 front-sans">
+        console.log("StreetView initial coords:", coordinates, "place:", place);
         
         <NavBar />
 
