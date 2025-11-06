@@ -1,4 +1,4 @@
-import NavBar from "../components/NavBar"
+import NavBar from "../components/NavBar";
 
 export default function Login() {
   return (
@@ -13,7 +13,7 @@ export default function Login() {
                 <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">Login</h1>
                 <form className="space-y-5">
                     <div>
-                        <label for="name" className="block text-gray-700 font-medium mb-2">Name:</label>
+                        <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name:</label>
                         <input 
                             type="text" 
                             id="name" 
