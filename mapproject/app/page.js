@@ -1,6 +1,11 @@
 "use client";
 import { useEffect } from "react";
 
+import NavBar from "./components/NavBar"
+
+import './globals.css'
+
+
 var places = [
   [{ lat: 48.85175190901051,  lng: 2.2897615145195256 },  {location: 'Eiffel Tower Hotel'}],
   [{ lat: 41.88916503732436,   lng: 12.495807327200632}, {location: 'The Colosseum Hotel'}],
@@ -73,8 +78,17 @@ export default function initialize() {
 
   return (
     <div>
-      <div id="street-view" style={{ height: "400px"}} />
+      <div className="bg-gray-100 text-gray-900 front-sans">
+        
+        <NavBar />
+
+        <main className="pt-20 flex justify-center items-center min-h-screen">
+            <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
+        </main>
+      </div>
+
       <div id="distance-display"></div>
+
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
         defer

@@ -1,47 +1,38 @@
-export default function About() {
+import NavBar from "../components/NavBar";
+
+export default function Login() {
   return (
-    <div class="bg-gray-100 text-gray-900 font-sans
-                bg-[url('../public/image/background.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
-        <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
-                <div class="flex space-x-6">
-                    <a href="map.html" class="text-xl front-semibold text-blue-800 transitior">Map</a>
-                    <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Login</a>
-                    <p class="text-blue-600 font-medium text-blue-600 border-b-2 border-blue-600 pb-1">Scores</p>
-                </div>
-            </div>
-        </nav>
-        <main class="pt-24 flex justify-center items-center min-h-screen">
-            <div class="bg-white rounded-2xl shadow-lg w-full max-w-3xl p-8">
-                <h1 class="text-2xl font-bold text-center text-blue-700 mb-6">Scores</h1>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
-                        <thead class="bg-blue-600 text-white">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-sm font-semibold">Name</th>
-                                <th class="px-6 py-3 text-left text-sm font-semibold">Date</th>
-                                <th class="px-6 py-3 text-left text-sm font-semibold">Score</th>
-                            </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-3">@</td>
-                                <td class="px-6 py-3">!</td>
-                                <td class="px-6 py-3">#</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-3">@2</td>
-                                <td class="px-6 py-3">!2</td>
-                                <td class="px-6 py-3">#2</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-3">@3</td>
-                                <td class="px-6 py-3">!3</td>
-                                <td class="px-6 py-3">#3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div className="bg-gray-100 text-gray-900 font-sans
+                 bg-cover bg-center bg-no-repeat bg-fixed
+                 bg-[url('../public/image/mapcar.jpg')]">
+        
+        <NavBar />
+
+        <main className="flex justify-center items-center min-h-screen pt-20">
+            <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8">
+                <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">Login</h1>
+                <form className="space-y-5">
+                    <div>
+                        <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name:</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your name" 
+                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+                    <div className="flex flex-col space-y-3">
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 text-white font-semibold py-2 rounded-xl shadow hover:bg-blue-700 transition"
+                        >Login</button>
+                        <button 
+                            type="button"
+                            className="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded-xl hover:bg-gray-300 transition"
+                        >Continue as Guest</button>
+                    </div>
+                </form>
             </div>
         </main>
     </div>
