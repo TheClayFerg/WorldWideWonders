@@ -43,3 +43,25 @@ next-env.d.ts
 # apple things
 .DS_Store
 DS_Store
+
+/bin
+/obj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
