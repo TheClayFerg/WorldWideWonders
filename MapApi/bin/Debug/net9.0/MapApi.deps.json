@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "TodoApi/1.0.0": {
+      "MapApi/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "9.0.5",
           "Microsoft.EntityFrameworkCore.Design": "9.0.10",
@@ -15,7 +15,7 @@
           "Pomelo.EntityFrameworkCore.MySql": "9.0.0"
         },
         "runtime": {
-          "TodoApi.dll": {}
+          "MapApi.dll": {}
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -781,7 +781,7 @@
     }
   },
   "libraries": {
-    "TodoApi/1.0.0": {
+    "MapApi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
