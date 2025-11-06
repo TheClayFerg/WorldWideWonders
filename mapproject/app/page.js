@@ -7,6 +7,7 @@ import './globals.css'
 
 
 var places = [
+  // starting locations
   [{ lat: 48.85175190901051,  lng: 2.2897615145195256 },  {location: 'Eiffel Tower Hotel'}],
   [{ lat: 41.88916503732436,   lng: 12.495807327200632}, {location: 'The Colosseum Hotel'}],
   [{ lat: -33.86332015348142, lng: 151.21184432020186 }, {location: 'Sydney Opera House Hotel'}],
@@ -20,6 +21,7 @@ var places = [
 ]
 
 var destination = [
+  // ending locations
   [{ lat: 48.857597232823224,  lng: 2.294088407744251 },  {location: 'Eiffel Tower'}],
   [{ lat: 41.89032514126806,   lng: 12.491846048954196 }, {location: 'The Colosseum'}],
   [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'Sydney Opera House'}],
@@ -30,12 +32,16 @@ var destination = [
   [{ lat: 35.36454630360458,   lng: 138.73307837316136}, {location: 'Mount Fuj'}],
   [{ lat: 20.68303868723637,   lng: -88.57213387301465}, {location: 'Chichen Itza'}]
 ]
-let currentPlace = places[Math.floor(Math.random() * places.length)]; 
-let coordinates = currentPlace[0]
-let place = currentPlace[1].location
+
+let round = Math.floor(Math.random() * places.length)
+let currentPlace = places[0]; // get a random starting location
+let coordinates = currentPlace[0] // get the coordinates for that place
+let place = currentPlace[1].location // get the name for that place
 
 export default function initialize() {
+  // google API imported code:
   useEffect(() => {
+    // place the user
     let panorama = new google.maps.StreetViewPanorama(
       document.getElementById("street-view"),
       {
@@ -44,9 +50,15 @@ export default function initialize() {
         zoom: 1,
       },
     )
-    console.log(coordinates)
+
+    panorama.addListener("position_changed", () => {
+      TestLocation(panorama.getPosition().lat(), panorama.getPosition().lng());
+    })
+    
+    console.log("coordinates: " + coordinates.lat + ", " + coordinates.lng)
   });
 
+  // reset the game with new data???????????????????????????
   let reconfigure = () => {
         let currentPlace = places[Math.floor(Math.random() * places.length)];
         coordinates = currentPlace[0]
@@ -95,4 +107,24 @@ export default function initialize() {
       ></script>
     </div>
   )
+}
+
+function TestLocation(lat, lng) {
+  // compare current coord with final and return 
+  //    if user hot or cold?
+  //    current distance from end?
+  //    if user is done
+  let latDist = Math.abs(destination[0][0].lat - lat)
+  let lngDist = Math.abs(destination[0][0].lng - lng)
+  let difDist = latDist + lngDist
+  console.log(
+    "\nlat distance: " + latDist + 
+    "\nlng distance: " + lngDist + 
+    "\ndifference: " + difDist
+  )
+  if ( difDist < 0.001 ) {
+    console.log("You won!!!")
+  } else {
+    console.log("keep going...")
+  }
 }
