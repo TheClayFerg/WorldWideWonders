@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj": {}
+    "C:\\Users\\User\\Downloads\\WorldWideWonders\\MapApi\\MapApi.csproj": {}
   },
   "projects": {
-    "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj": {
+    "C:\\Users\\User\\Downloads\\WorldWideWonders\\MapApi\\MapApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Downloads\\WorldWideWonders\\MapApi\\MapApi.csproj",
         "projectName": "MapApi",
-        "projectPath": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj",
-        "packagesPath": "C:\\Users\\fordj\\.nuget\\packages\\",
-        "outputPath": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\obj\\",
+        "projectPath": "C:\\Users\\User\\Downloads\\WorldWideWonders\\MapApi\\MapApi.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Downloads\\WorldWideWonders\\MapApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
