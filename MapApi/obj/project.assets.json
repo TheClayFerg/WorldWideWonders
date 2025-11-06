@@ -3362,11 +3362,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\MapApi\\TodoApi.csproj",
-      "projectName": "TodoApi",
-      "projectPath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\MapApi\\TodoApi.csproj",
+      "projectUniqueName": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj",
+      "projectName": "MapApi",
+      "projectPath": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\MapApi.csproj",
       "packagesPath": "C:\\Users\\fordj\\.nuget\\packages\\",
-      "outputPath": "D:\\Indian Hills\\ByteJam2025\\DatabaseWithMySQL\\MapApi\\obj\\",
+      "outputPath": "D:\\Indian Hills\\ByteJam2025\\connect-db-to-web\\MapApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fordj\\AppData\\Roaming\\NuGet\\NuGet.Config",
