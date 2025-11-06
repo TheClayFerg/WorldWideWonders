@@ -159,6 +159,7 @@ function TestLocation(lat, lng) {
   oldDifDist = difDist
 }
 
+// display
 function HotOrCold(newer) {
   const hintBox = document.getElementById("hot-or-cold")
   if (newer > oldDifDist) {
