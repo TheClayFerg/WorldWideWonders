@@ -4,7 +4,7 @@ export default function Rules() {
     return (
         <body class="bg-gray-100 text-gray-900 font-sans
                 bg-cover bg-center bg-no-repeat bg-fixed
-                bg-[url('../public/image/mapcar.jpg')]">
+                bg-[url('../public/image/mapdesk.jpg')]">
 
         <NavBar />
 
