@@ -34,67 +34,93 @@ var destination = [
 ]
 
 let currentPlace = places[Math.floor(Math.random() * places.length)];
-let coordinates = currentPlace[0]
-let place = currentPlace[1].location
+let coordinates = currentPlace[0];
+let place = currentPlace[1].location;
+let oldDifDist = 1;
 
-let oldDifDist = 1
-
-export default function initialize() {
+export default function Initialize() {
     useEffect(() => {
-        // create panorama and store it on window so dropdown/random can control it later
-        let panorama = new google.maps.StreetViewPanorama(
-            document.getElementById("street-view"),
-            {
-                position: coordinates,
-                pov: { heading: 165, pitch: 0 },
-                zoom: 1,
-            },
-        );
-        window._panorama = panorama;
+        function initPanorama() {
+            if (!window.google || !window.google.maps) {
+                console.log("⏳ Waiting for Google Maps API to load...");
+                setTimeout(initPanorama, 300);
+                return;
+            }
 
-        // console.log("StreetView initial coords:", coordinates, "place:", place);
-                
-        panorama.addListener("position_changed", () => {
-          TestLocation(panorama.getPosition().lat(), panorama.getPosition().lng());
-        })
+            const panorama = new window.google.maps.StreetViewPanorama(
+                document.getElementById("street-view"),
+                {
+                    position: coordinates,
+                    pov: { heading: 165, pitch: 0 },
+                    zoom: 1,
+                }
+            );
+
+            window._panorama = panorama;
+
+            panorama.addListener("position_changed", () => {
+                const pos = panorama.getPosition();
+                TestLocation(pos.lat(), pos.lng());
+            });
+        }
+
+        // dynamically load the Google Maps script
+        if (!document.querySelector("#google-maps-script")) {
+            const script = document.createElement("script");
+            script.id = "google-maps-script";
+            script.src =
+                "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&v=weekly";
+            script.async = true;
+            script.defer = true;
+            script.onload = initPanorama;
+            document.head.appendChild(script);
+        } else {
+            initPanorama();
+        }
 
         return () => {
-            try {
-                if (window._panorama) {
-                    delete window._panorama;
-                }
-            } catch (e) {  }
+            if (window._panorama) delete window._panorama;
         };
-    }, []); 
-
+    }, []);
 
     function moveToIndex(idx) {
         if (idx < 0 || idx >= places.length) return;
         currentPlace = places[idx];
         coordinates = currentPlace[0];
         place = currentPlace[1].location;
-        
+
         if (window._panorama && typeof window._panorama.setPosition === "function") {
             window._panorama.setPosition(coordinates);
-            console.log("Panorama moved to:", place, coordinates);
-        } else {
-            // console log for debug
-            console.log("Panorama not ready yet; coordinates set to:", place);
+            console.log("Moved to:", place);
         }
     }
 
     function handleSelectChange(e) {
         const name = e.target.value;
-        const newIdx = places.findIndex(p => p[1].location === name);
+        const newIdx = places.findIndex((p) => p[1].location === name);
         if (newIdx >= 0) moveToIndex(newIdx);
     }
 
     function pickRandom() {
         const randomIdx = Math.floor(Math.random() * places.length);
         moveToIndex(randomIdx);
-        // also try to update the select's shown value by setting its value directly (keeps UI in sync)
         const sel = document.getElementById("place-select");
         if (sel) sel.value = places[randomIdx][1].location;
+    }
+
+    async function getHint() {
+        try {
+            const res = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ location: place }),
+            });
+            const data = await res.json();
+            alert("Hint: " + data.reply);
+        } catch (err) {
+            console.error("Failed to get hint:", err);
+            alert("Sorry, hint bot isn't responding!");
+        }
     }
 
     return (
@@ -145,7 +171,7 @@ export default function initialize() {
                 defer
             ></script>
         </div>
-    )
+    );
 }
 
 function TestLocation(lat, lng) {
