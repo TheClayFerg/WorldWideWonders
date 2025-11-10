@@ -1,6 +1,6 @@
-[00:00:03.160] Server  LOG      ✓ Ready in 2.8s
-[00:00:08.293] Server  LOG      ○ Compiling / ...
-[00:00:25.482] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:25.482] Browser LOG     StreetView initial coords: {"lat":48.85175190901051,"lng":2.2897615145195256} place: Eiffel Tower
-[00:00:25.482] Browser LOG     Panorama moved to: Big Ben {"lat":51.499478209752645,"lng":-0.13307989206634516}
-[00:00:25.486] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.677] Server  LOG      ✓ Ready in 7.7s
+[00:00:15.003] Server  LOG      ○ Compiling / ...
+[00:00:28.700] Server  LOG      ○ Compiling /chat ...
+[00:00:34.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:34.707] Browser LOG     StreetView initial coords: {"lat":48.85175190901051,"lng":2.2897615145195256} place: Eiffel Tower
+[00:00:34.742] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
