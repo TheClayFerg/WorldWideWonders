@@ -124,53 +124,56 @@ export default function Initialize() {
     }
 
     return (
-        <div>
-            <div className="bg-gray-100 text-gray-900 front-sans">
+      <div className="bg-gray-100 text-gray-900 front-sans">
 
-                <NavBar />
-                <WinModal 
-                  name={"John Doe"}
-                  time={123}
-                  location={place}
-                />
+        <NavBar />
+        <WinModal 
+          name={"John Doe"}
+          time={123}
+          location={place}
+        />
 
-                <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">Hot or Cold</h3>
+        <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">
+          Hot or Cold
+        </h3>
 
-                <main className="pt-5 flex flex-col items-center min-h-screen">
-                    {/* dropdown + random button */}
-                    <div className="mb-4 flex gap-3 items-center">
-                        <select
-                            id="place-select"
-                            className="border border-gray-300 rounded-lg p-2"
-                            defaultValue={place}
-                            onChange={handleSelectChange}
-                        >
-                            {places.map((p, i) => (
-                                <option key={i} value={p[1].location}>
-                                    {p[1].location}
-                                </option>
-                            ))}
-                        </select>
+        <main className="pt-5 flex flex-col items-center min-h-screen">
+          {/* dropdown + random button */}
+          <div className="mb-4 flex gap-3 items-center">
+            <select
+              id="place-select"
+              className="border border-gray-300 rounded-lg p-2"
+              defaultValue={place}
+              onChange={handleSelectChange}
+            >
+              {places.map((p, i) => (
+                <option key={i} value={p[1].location}>
+                  {p[1].location}
+                </option>
+              ))}
+            </select>
 
-                        <button
-                            className="px-3 py-2 border rounded bg-white"
-                            onClick={pickRandom}
-                        >
-                            Random
-                        </button>
-                    </div>
+            <button
+              className="px-3 py-2 border rounded bg-white"
+              onClick={pickRandom}
+            >
+              Random
+            </button>
 
-                    <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
-                </main>
-            </div>
+            <button
+              className="px-3 py-2 border rounded bg-yellow-300 hover:bg-yellow-400"
+              onClick={getHint}
+            >
+              AI Tip 🤔
+            </button>
+          </div>
 
-            <div id="distance-display"></div>
-
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
-                defer
-            ></script>
-        </div>
+          <div 
+            id="street-view" 
+            className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" 
+          />
+        </main>
+      </div>
     );
 }
 
