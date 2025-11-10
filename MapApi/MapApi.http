@@ -1,6 +1,8 @@
 @MapApi_HostAddress = http://localhost:5170
 
-GET {{MapApi_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{MapApi_HostAddress}}/api/auth/login
+Content-Type: application/json
 
-###
+{
+    "username": "TestUser"
+}
