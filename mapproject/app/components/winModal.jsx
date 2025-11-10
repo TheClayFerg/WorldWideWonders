@@ -3,15 +3,17 @@ import React from "react";
 
 import { useState, useEffect } from "react";
 
-export default function WinModal({ name, time, location }) {
+export default function WinModal({ isOpen, onClose, name, time, location }) {
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(isOpen);
 
+  /*
   useEffect(() => {
     window.openModal = () => setShowModal(true);
   }, []);
+  */
 
-  if (!showModal) return (null);
+  if (!isOpen) return (null);
 
   // Only render modal if isOpen is true
   return (
@@ -37,8 +39,12 @@ export default function WinModal({ name, time, location }) {
           Great job, You found your way to {location}!
         </p>
 
+        <p className="text-gray-600 mb-6">
+          Your final time was: {time}!
+        </p>
+
         <button
-          onClick={() => setShowModal(false)}
+          onClick={onClose}
           className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
         >
           Close
