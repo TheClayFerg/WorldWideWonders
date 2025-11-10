@@ -124,7 +124,6 @@ export default function Initialize() {
     }
 
     return (
-        <div>
             <div className="bg-gray-100 text-gray-900 front-sans">
 
                 <NavBar />
