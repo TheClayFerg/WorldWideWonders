@@ -5,6 +5,36 @@ import NavBar from "./components/NavBar"
 
 import './globals.css'
 
+let stopwatchInterval;
+let elapsedTime = 0; // in milliseconds
+
+function updateTimerDisplay() {
+  const el = document.getElementById("timer-display");
+  if (el) el.textContent = (elapsedTime / 1000).toFixed(1) + "s";
+}
+
+function startStopwatch() {
+  if (!stopwatchInterval) {
+    stopwatchInterval = setInterval(() => {
+      elapsedTime += 100;
+      updateTimerDisplay();
+    }, 100);
+  }
+}
+
+function stopStopwatch() {
+  if (stopwatchInterval) {
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = null;
+  }
+}
+
+function resetStopwatch() {
+  stopStopwatch();
+  elapsedTime = 0;
+  updateTimerDisplay();
+}
+
 // starting locations
 var places = [
   [{ lat: 48.85175190901051,   lng: 2.2897615145195256 },  {location: 'Eiffel Tower'}],
@@ -14,7 +44,6 @@ var places = [
   [{ lat: 51.499478209752645,  lng: -0.13307989206634516}, {location: 'Big Ben'}],
   [{ lat: 37.83746295614792,   lng: -122.47941782521923},  {location: 'Golden Gate Bridge'}],
   [{ lat: 48.806942340957846,  lng: 2.133223974191376},    {location: 'Palace of Versailles'}],
-  [{ lat: 35.36787231223111,   lng: 138.8610499351484},    {location: 'Mount Fuji'}],
   [{ lat: 20.694297159826963,  lng: -88.58618645865695},   {location: 'Chichen Itza'}]
  
 ]
@@ -26,9 +55,8 @@ var destination = [
   [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'Sydney Opera House'}],
   [{ lat: 43.722962919466866,  lng: 10.396104195604407},  {location: 'Leaning Tower of pisa'}],
   [{ lat: 51.50096740041798,   lng: -0.1241623357433608}, {location: 'Big Ben'}],
-  [{ lat: 37.8276502293566,    lng: -122.48178307959817}, {location: 'Golden Gate Bridge'}],
+  [{ lat: 37.83233390159084,    lng: -122.47332804550392}, {location: 'Golden Gate Bridge'}],
   [{ lat: 48.80368473709394,   lng: 2.124536265468451},   {location: 'Palace of Versailles'}],
-  [{ lat: 35.36454630360458,   lng: 138.73307837316136},  {location: 'Mount Fuji'}],
   [{ lat: 20.68303868723637,   lng: -88.57213387301465},  {location: 'Chichen Itza'}]
 ]
 
@@ -51,6 +79,9 @@ export default function initialize() {
         );
         window._panorama = panorama;
 
+        resetStopwatch();
+        startStopwatch();
+
         console.log("StreetView initial coords:", coordinates, "place:", place);
         
         panorama.addListener("position_changed", () => {
@@ -63,6 +94,7 @@ export default function initialize() {
                     delete window._panorama;
                 }
             } catch (e) {  }
+            stopStopwatch();
         };
     }, []); 
 
@@ -85,6 +117,8 @@ export default function initialize() {
     function handleSelectChange(e) {
         const name = e.target.value;
         const newIdx = places.findIndex(p => p[1].location === name);
+        resetStopwatch();
+        startStopwatch();
         if (newIdx >= 0) moveToIndex(newIdx);
     }
 
@@ -93,6 +127,8 @@ export default function initialize() {
         moveToIndex(randomIdx);
         // also try to update the select's shown value by setting its value directly (keeps UI in sync)
         const sel = document.getElementById("place-select");
+        resetStopwatch();
+        startStopwatch();
         if (sel) sel.value = places[randomIdx][1].location;
     }
 
@@ -126,6 +162,11 @@ export default function initialize() {
                         >
                             Random
                         </button>
+                                                <div className="flex items-center gap-2 ml-4">
+                          <span className="font-mono">Time:</span>
+                          <span id="timer-display" className="font-mono tabular-nums">0.0s</span>
+                        </div>
+
                     </div>
 
                     <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
@@ -159,7 +200,7 @@ function TestLocation(lat, lng) {
 
   if ( difDist < 0.001 ) {
     // needs replaced with Jenna's modal
-    // also end game timer
+    stopStopwatch();
     alert("You won!!!")
   } 
 
