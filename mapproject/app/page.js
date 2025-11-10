@@ -37,55 +37,62 @@ let place = currentPlace[1].location;
 let oldDifDist = 1;
 
 export default function Initialize() {
+
+    const initialIdx = Math.floor(Math.random() * places.length);
+    const [currentIdx, setCurrentIdx] = useState(initialIdx);
+    const [place, setPlace] = useState(places[initialIdx][1].location);
+
     useEffect(() => {
-        function initPanorama() {
-            if (!window.google || !window.google.maps) {
-                console.log("⏳ Waiting for Google Maps API to load...");
-                setTimeout(initPanorama, 300);
-                return;
-            }
+    setPlace(places[currentIdx][1].location);
+  }, [currentIdx]);
 
-            const panorama = new window.google.maps.StreetViewPanorama(
-                document.getElementById("street-view"),
-                {
-                    position: coordinates,
-                    pov: { heading: 165, pitch: 0 },
-                    zoom: 1,
-                }
-            );
+  // initialize Google Street View
+  useEffect(() => {
+    function initPanorama() {
+      if (!window.google || !window.google.maps) {
+        setTimeout(initPanorama, 300);
+        return;
+      }
 
-            window._panorama = panorama;
-
-            panorama.addListener("position_changed", () => {
-                const pos = panorama.getPosition();
-                TestLocation(pos.lat(), pos.lng());
-            });
+      const panorama = new window.google.maps.StreetViewPanorama(
+        document.getElementById("street-view"),
+        {
+          position: places[currentIdx][0],
+          pov: { heading: 165, pitch: 0 },
+          zoom: 1,
         }
+      );
 
-        // dynamically load the Google Maps script
-        if (!document.querySelector("#google-maps-script")) {
-            const script = document.createElement("script");
-            script.id = "google-maps-script";
-            script.src =
-                "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&v=weekly";
-            script.async = true;
-            script.defer = true;
-            script.onload = initPanorama;
-            document.head.appendChild(script);
-        } else {
-            initPanorama();
-        }
+      window._panorama = panorama;
 
-        return () => {
-            if (window._panorama) delete window._panorama;
-        };
-    }, []);
+      panorama.addListener("position_changed", () => {
+        const pos = panorama.getPosition();
+        TestLocation(pos.lat(), pos.lng(), currentIdx);
+      });
+    }
+
+    if (!document.querySelector("#google-maps-script")) {
+      const script = document.createElement("script");
+      script.id = "google-maps-script";
+      script.src =
+        "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&v=weekly";
+      script.async = true;
+      script.defer = true;
+      script.onload = initPanorama;
+      document.head.appendChild(script);
+    } else {
+      initPanorama();
+    }
+
+    return () => {
+      if (window._panorama) delete window._panorama;
+    };
+  }, [currentIdx]);
 
     function moveToIndex(idx) {
         if (idx < 0 || idx >= places.length) return;
-        currentPlace = places[idx];
-        coordinates = currentPlace[0];
-        place = currentPlace[1].location;
+        setCurrentIdx(idx);
+        setPlace(places[idx][1].location);
 
         if (window._panorama && typeof window._panorama.setPosition === "function") {
             window._panorama.setPosition(coordinates);
@@ -175,24 +182,19 @@ export default function Initialize() {
     );
 }
 
-function TestLocation(lat, lng) {
-  // get the difference in latitude
-  let latDist = Math.abs(destination[places.indexOf(currentPlace)][0].lat - lat)
-  // get the difference in longitude
-  let lngDist = Math.abs(destination[places.indexOf(currentPlace)][0].lng - lng)
-  // get the total difference in distance for comparison later
-  let difDist = latDist + lngDist
+function TestLocation(lat, lng, idx) {
+  const dest = destination[idx][0];
+  const latDist = Math.abs(dest.lat - lat);
+  const lngDist = Math.abs(dest.lng - lng);
+  const difDist = latDist + lngDist;
 
-  // check if user is within .001 distance from destination
-  if ( difDist < 0.001 ) {
-    // needs replaced with Jenna's modal
-    // also end game timer
+  console.log(difDist)
+  if (difDist < 0.001) {
     window.openModal();
-  } 
+  }
 
   HotOrCold(difDist);
-
-  oldDifDist = difDist
+  oldDifDist = difDist;
 }
 
 // display
