@@ -11,7 +11,7 @@ export async function POST(req) {
   You are a helpful geography assistant for a GeoGuessr-style game.
   The player is looking at this location: ${location}.
   Give a short, fun hint that helps the player guess the country or landmark,
-  but don’t reveal the exact answer.
+  but don’t reveal the exact answer at first but be more specific after the first time asking.
   Make it sound conversational and playful.
   `;
 
