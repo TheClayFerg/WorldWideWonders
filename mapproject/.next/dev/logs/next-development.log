@@ -1,7 +1,4 @@
-[00:00:02.724] Server  LOG      ✓ Ready in 2.2s
-[00:00:11.235] Server  LOG      ○ Compiling / ...
-[00:00:25.185] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:25.498] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
-[00:00:30.028] Browser LOG     Moved to: Big Ben
-[00:00:35.763] Browser LOG     Moved to: The Eiffel Tower
-[00:02:04.704] Browser LOG     Moved to: The Colosseum
+[00:00:02.800] Server  LOG      ✓ Ready in 2.3s
+[00:00:18.129] Server  LOG      ○ Compiling / ...
+[00:00:20.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:20.867] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
