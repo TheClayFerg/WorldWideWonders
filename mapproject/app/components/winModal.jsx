@@ -37,6 +37,10 @@ export default function WinModal({ name, time, location }) {
           Great job, You found your way to {location}!
         </p>
 
+        <p className="text-gray-600 mb-6">
+          Your time was {time ? `${time}s` : "…"}!
+        </p>
+
         <button
           onClick={() => setShowModal(false)}
           className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
