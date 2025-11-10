@@ -6,6 +6,36 @@ import WinModal from "./components/winModal"
 
 import './globals.css'
 
+let stopwatchInterval;
+let elapsedTime = 0; // in milliseconds\
+
+function updateTimerDisplay() {
+  const el = document.getElementById("timer-display");
+  if (el) el.textContent = (elapsedTime / 1000).toFixed(1) + "s";
+}
+
+function startStopwatch() {
+  if (!stopwatchInterval) {
+    stopwatchInterval = setInterval(() => {
+      elapsedTime += 100;
+      updateTimerDisplay();
+    }, 100);
+  }
+}
+
+function stopStopwatch() {
+  if (stopwatchInterval) {
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = null;
+  }
+}
+
+function resetStopwatch() {
+  stopStopwatch();
+  elapsedTime = 0;
+  updateTimerDisplay();
+}
+
 // starting locations
 var places = [
   [{ lat: 48.85175190901051,   lng: 2.2897615145195256 },  {location: 'The Eiffel Tower'}],
@@ -42,6 +72,10 @@ export default function Initialize() {
     const [currentIdx, setCurrentIdx] = useState(initialIdx);
     const [place, setPlace] = useState(places[initialIdx][1].location);
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [playerName, setPlayerName] = useState("name");
+    const [time, setTime] = useState(0);
+
     useEffect(() => {
     setPlace(places[currentIdx][1].location);
   }, [currentIdx]);
@@ -65,6 +99,9 @@ export default function Initialize() {
 
       window._panorama = panorama;
 
+      resetStopwatch();
+      startStopwatch();
+
       panorama.addListener("position_changed", () => {
         const pos = panorama.getPosition();
         TestLocation(pos.lat(), pos.lng(), currentIdx);
@@ -86,6 +123,7 @@ export default function Initialize() {
 
     return () => {
       if (window._panorama) delete window._panorama;
+      stopStopwatch();
     };
   }, [currentIdx]);
 
@@ -103,6 +141,8 @@ export default function Initialize() {
     function handleSelectChange(e) {
         const name = e.target.value;
         const newIdx = places.findIndex((p) => p[1].location === name);
+        resetStopwatch();
+        startStopwatch();
         if (newIdx >= 0) moveToIndex(newIdx);
     }
 
@@ -110,6 +150,8 @@ export default function Initialize() {
         const randomIdx = Math.floor(Math.random() * places.length);
         moveToIndex(randomIdx);
         const sel = document.getElementById("place-select");
+        resetStopwatch();
+        startStopwatch();
         if (sel) sel.value = places[randomIdx][1].location;
     }
 
@@ -133,9 +175,11 @@ export default function Initialize() {
 
         <NavBar />
         <WinModal 
-          name={"John Doe"}
-          time={123}
+          name={playerName}
+          time={(time / 1000).toFixed(1) + "s"}
           location={place}
+          onClose={() => setIsOpen(false)}
+          isOpen={isOpen}
         />
 
         <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">
@@ -171,6 +215,11 @@ export default function Initialize() {
             >
               AI Tip 🤔
             </button>
+
+            <div className="flex items-center gap-2 ml-4">
+              <span className="font-mono">Time:</span>
+              <span id="timer-display" className="font-mono tabular-nums">0.0s</span>
+            </div>
           </div>
 
           <div 
@@ -180,35 +229,41 @@ export default function Initialize() {
         </main>
       </div>
     );
-}
 
-function TestLocation(lat, lng, idx) {
-  const dest = destination[idx][0];
-  const latDist = Math.abs(dest.lat - lat);
-  const lngDist = Math.abs(dest.lng - lng);
-  const difDist = latDist + lngDist;
+    function TestLocation(lat, lng, idx) {
+      const dest = destination[idx][0];
+      const latDist = Math.abs(dest.lat - lat);
+      const lngDist = Math.abs(dest.lng - lng);
+      const difDist = latDist + lngDist;
 
-  console.log(difDist)
-  if (difDist < 0.001) {
-    window.openModal();
+      if (difDist < 0.001) {
+        stopStopwatch();
+        console.log("stopping time")
+        setTime(elapsedTime);
+        console.log("setting time")
+        setIsOpen(true);
+        console.log("opening modal")
+      }
+
+      HotOrCold(difDist);
+      oldDifDist = difDist;
+    }
+
+  // display
+  function HotOrCold(newer) {
+    // change a header tag to "hotter" or "colder" as the player moves
+    const hintBox = document.getElementById("hot-or-cold")
+    if (newer > oldDifDist) {
+      hintBox.innerText = "Colder..."
+      hintBox.className = "pt-30 flex justify-center text-xl font-bold text-blue-500"
+    } else if (oldDifDist > newer) {
+      hintBox.innerText = "Warmer..."
+      hintBox.className = "pt-30 flex justify-center text-xl font-bold text-red-500"
+    }
   }
 
-  HotOrCold(difDist);
-  oldDifDist = difDist;
 }
 
-// display
-function HotOrCold(newer) {
-  // change a header tag to "hotter" or "colder" as the player moves
-  const hintBox = document.getElementById("hot-or-cold")
-  if (newer > oldDifDist) {
-    hintBox.innerText = "Colder..."
-    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-blue-500"
-  } else if (oldDifDist > newer) {
-    hintBox.innerText = "Warmer..."
-    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-red-500"
-  }
-}
 
 
 
