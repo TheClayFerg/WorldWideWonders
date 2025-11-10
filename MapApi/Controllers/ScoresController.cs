@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MapApi.Models;
+using MapApi.Data;
 
 namespace MapApi.Controllers
 {
