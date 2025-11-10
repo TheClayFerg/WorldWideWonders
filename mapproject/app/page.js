@@ -124,56 +124,59 @@ export default function Initialize() {
     }
 
     return (
-            <div className="bg-gray-100 text-gray-900 front-sans">
+      <div className="bg-gray-100 text-gray-900 front-sans">
 
-                <NavBar />
-                <WinModal 
-                  name={"John Doe"}
-                  time={123}
-                  location={place}
-                />
+        <NavBar />
+        <WinModal 
+          name={"John Doe"}
+          time={123}
+          location={place}
+        />
 
-            <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">
-                Hot or Cold
-            </h3>
+        <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">
+          Hot or Cold
+        </h3>
 
-            <main className="pt-5 flex flex-col items-center min-h-screen">
-                <div className="mb-4 flex gap-3 items-center">
-                    <select
-                        id="place-select"
-                        className="border border-gray-300 rounded-lg p-2"
-                        defaultValue={place}
-                        onChange={handleSelectChange}
-                    >
-                        {places.map((p, i) => (
-                            <option key={i} value={p[1].location}>
-                                {p[1].location}
-                            </option>
-                        ))}
-                    </select>
+        <main className="pt-5 flex flex-col items-center min-h-screen">
+          {/* dropdown + random button */}
+          <div className="mb-4 flex gap-3 items-center">
+            <select
+              id="place-select"
+              className="border border-gray-300 rounded-lg p-2"
+              defaultValue={place}
+              onChange={handleSelectChange}
+            >
+              {places.map((p, i) => (
+                <option key={i} value={p[1].location}>
+                  {p[1].location}
+                </option>
+              ))}
+            </select>
 
-                    <button className="px-3 py-2 border rounded bg-white" onClick={pickRandom}>
-                        Random
-                    </button>
+            <button
+              className="px-3 py-2 border rounded bg-white"
+              onClick={pickRandom}
+            >
+              Random
+            </button>
 
-                    <button
-                        className="px-3 py-2 border rounded bg-yellow-300 hover:bg-yellow-400"
-                        onClick={getHint}
-                    >
-                        AI Tip 🤔
-                    </button>
-                </div>
+            <button
+              className="px-3 py-2 border rounded bg-yellow-300 hover:bg-yellow-400"
+              onClick={getHint}
+            >
+              AI Tip 🤔
+            </button>
+          </div>
 
-                <div
-                    id="street-view"
-                    className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600"
-                />
-            </main>
-        </div>
+          <div 
+            id="street-view" 
+            className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" 
+          />
+        </main>
+      </div>
     );
 }
 
-// helper functions outside component
 function TestLocation(lat, lng) {
   // get the difference in latitude
   let latDist = Math.abs(destination[places.indexOf(currentPlace)][0].lat - lat)
@@ -189,23 +192,22 @@ function TestLocation(lat, lng) {
     window.openModal();
   } 
 
-    HotOrCold(difDist);
-    oldDifDist = difDist;
+  HotOrCold(difDist);
+
+  oldDifDist = difDist
 }
 
+// display
 function HotOrCold(newer) {
-    const hintBox = document.getElementById("hot-or-cold");
-    if (!hintBox) return;
-
-    if (newer > oldDifDist) {
-        hintBox.innerText = "Colder...";
-        hintBox.className =
-            "pt-30 flex justify-center text-xl font-bold text-blue-500";
-    } else if (oldDifDist > newer) {
-        hintBox.innerText = "Warmer...";
-        hintBox.className =
-            "pt-30 flex justify-center text-xl font-bold text-red-500";
-    }
+  // change a header tag to "hotter" or "colder" as the player moves
+  const hintBox = document.getElementById("hot-or-cold")
+  if (newer > oldDifDist) {
+    hintBox.innerText = "Colder..."
+    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-blue-500"
+  } else if (oldDifDist > newer) {
+    hintBox.innerText = "Warmer..."
+    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-red-500"
+  }
 }
 
 
