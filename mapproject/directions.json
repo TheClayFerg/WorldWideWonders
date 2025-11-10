@@ -1,0 +1,51 @@
+{
+  "Eiffel Tower": [
+    "Continue down the road past the Sushi Yako",
+    "Take a right after Bir Hakeim",
+    "Take a right at 2 three wheeled bikes",
+    "Go towards the pond",
+    "Take the right path at the pond"
+  ],
+  "The Colosseum": [
+    "Go the wrong way down the one way",
+    "Continue past the ticket sign",
+    "Get to the opposite side of the Colosseum",
+    "When you get close to a small white van go towards the gate",
+    "Continue down the hall to the overlook"
+  ],
+  "Sydney Opera House": [
+    "Move towards the statue down the road and take a left at right before it",
+    "When you get to the far side of the fountain continue to the back side of the Opera House"
+  ],
+  "Leaning Tower of Pisa": [
+    "Head towards Po’sto sign",
+    "Go through the vendor stalls and under the arch",
+    "Continue towards the Leaning tower"
+  ],
+  "Big Ben": [
+    "Go towards the construction site and go to the right",
+    "Go down the alley past the orange vans",
+    "Take a right at the bike against a fence",
+    "Continue towards Big Ben"
+  ],
+  "Golden Gate Bridge": [
+    "Head towards the water",
+    "Go through the parking lot",
+    "Follow the road up the hill",
+    "To the parking lot"
+  ],
+  "Palace of Versailles": [
+    "Go past the mopeds",
+    "Take a right at Big Fernand",
+    "When you see the Carre Aux Herbes sign turn left",
+    "Follow the A13 sign",
+    "Follow the Cathedrale sign",
+    "Go towards the statue of the house being ridden",
+    "Continue towards the gates"
+  ],
+  "Chichen Itza": [
+    "Move away from the pepsi sign",
+    "At the tiki hut turn right",
+    "Follow the Chichen Itza signs"
+  ]
+}

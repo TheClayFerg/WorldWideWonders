@@ -40,7 +40,7 @@ export default function ChatPage() {
             const data = await res.json();
 
             const botMessage = { role: "assistant", content: data.reply };
-            setMessages((prev) => [...prev, newMessage, botMessage]);
+            setMessages((prev) => [...prev, botMessage]);
         } catch (err) {
             console.error("Chat failed:", err);
         } finally {

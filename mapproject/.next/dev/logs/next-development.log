@@ -1,6 +1,22 @@
-[00:00:09.677] Server  LOG      ✓ Ready in 7.7s
-[00:00:15.003] Server  LOG      ○ Compiling / ...
-[00:00:28.700] Server  LOG      ○ Compiling /chat ...
-[00:00:34.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:34.707] Browser LOG     StreetView initial coords: {"lat":48.85175190901051,"lng":2.2897615145195256} place: Eiffel Tower
-[00:00:34.742] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.863] Server  LOG      ✓ Ready in 1464ms
+[00:00:04.266] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:04.401] Browser LOG     StreetView initial coords: {"lat":43.72241521483225,"lng":10.392064933294535} place: Leaning Tower of pisa
+[00:00:07.308] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.892] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:08.629] Browser LOG     StreetView initial coords: {"lat":37.83746295614792,"lng":-122.47941782521923} place: Golden Gate Bridge
+[00:01:18.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:18.240] Browser LOG     StreetView initial coords: {"lat":43.72241521483225,"lng":10.392064933294535} place: Leaning Tower of pisa
+[00:01:20.773] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:25.399] Browser LOG     Panorama moved to: Golden Gate Bridge {"lat":37.83746295614792,"lng":-122.47941782521923}
+[00:01:34.542] Server  ERROR   Error: 403 Project `proj_Mgdyyx1MEZT8CsQ68HJxjNo6` does not have access to model `gpt-4o-mini`
+[00:01:34.648] Browser ERROR   Chat failed: {"message":"Failed to execute 'json' on 'Response': Unexpected end of JSON input"}
+[00:07:54.774] Server  ERROR   Error: 403 Project `proj_Mgdyyx1MEZT8CsQ68HJxjNo6` does not have access to model `gpt-4o-mini`
+[00:07:54.880] Browser ERROR   Chat failed: {"message":"Failed to execute 'json' on 'Response': Unexpected end of JSON input"}
+[00:08:08.259] Server  ERROR   Error: 403 Project `proj_Mgdyyx1MEZT8CsQ68HJxjNo6` does not have access to model `gpt-4o-mini`
+[00:08:08.368] Browser ERROR   Chat failed: {"message":"Failed to execute 'json' on 'Response': Unexpected end of JSON input"}
+[00:08:15.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:16.220] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:16.251] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:16.633] Browser LOG     StreetView initial coords: {"lat":37.83746295614792,"lng":-122.47941782521923} place: Golden Gate Bridge
+[00:08:41.295] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:45.378] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
