@@ -34,67 +34,93 @@ var destination = [
 ]
 
 let currentPlace = places[Math.floor(Math.random() * places.length)];
-let coordinates = currentPlace[0]
-let place = currentPlace[1].location
+let coordinates = currentPlace[0];
+let place = currentPlace[1].location;
+let oldDifDist = 1;
 
-let oldDifDist = 1
-
-export default function initialize() {
+export default function Initialize() {
     useEffect(() => {
-        // create panorama and store it on window so dropdown/random can control it later
-        let panorama = new google.maps.StreetViewPanorama(
-            document.getElementById("street-view"),
-            {
-                position: coordinates,
-                pov: { heading: 165, pitch: 0 },
-                zoom: 1,
-            },
-        );
-        window._panorama = panorama;
+        function initPanorama() {
+            if (!window.google || !window.google.maps) {
+                console.log("⏳ Waiting for Google Maps API to load...");
+                setTimeout(initPanorama, 300);
+                return;
+            }
 
-        // console.log("StreetView initial coords:", coordinates, "place:", place);
-                
-        panorama.addListener("position_changed", () => {
-          TestLocation(panorama.getPosition().lat(), panorama.getPosition().lng());
-        })
+            const panorama = new window.google.maps.StreetViewPanorama(
+                document.getElementById("street-view"),
+                {
+                    position: coordinates,
+                    pov: { heading: 165, pitch: 0 },
+                    zoom: 1,
+                }
+            );
+
+            window._panorama = panorama;
+
+            panorama.addListener("position_changed", () => {
+                const pos = panorama.getPosition();
+                TestLocation(pos.lat(), pos.lng());
+            });
+        }
+
+        // dynamically load the Google Maps script
+        if (!document.querySelector("#google-maps-script")) {
+            const script = document.createElement("script");
+            script.id = "google-maps-script";
+            script.src =
+                "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&v=weekly";
+            script.async = true;
+            script.defer = true;
+            script.onload = initPanorama;
+            document.head.appendChild(script);
+        } else {
+            initPanorama();
+        }
 
         return () => {
-            try {
-                if (window._panorama) {
-                    delete window._panorama;
-                }
-            } catch (e) {  }
+            if (window._panorama) delete window._panorama;
         };
-    }, []); 
-
+    }, []);
 
     function moveToIndex(idx) {
         if (idx < 0 || idx >= places.length) return;
         currentPlace = places[idx];
         coordinates = currentPlace[0];
         place = currentPlace[1].location;
-        
+
         if (window._panorama && typeof window._panorama.setPosition === "function") {
             window._panorama.setPosition(coordinates);
-            console.log("Panorama moved to:", place, coordinates);
-        } else {
-            // console log for debug
-            console.log("Panorama not ready yet; coordinates set to:", place);
+            console.log("Moved to:", place);
         }
     }
 
     function handleSelectChange(e) {
         const name = e.target.value;
-        const newIdx = places.findIndex(p => p[1].location === name);
+        const newIdx = places.findIndex((p) => p[1].location === name);
         if (newIdx >= 0) moveToIndex(newIdx);
     }
 
     function pickRandom() {
         const randomIdx = Math.floor(Math.random() * places.length);
         moveToIndex(randomIdx);
-        // also try to update the select's shown value by setting its value directly (keeps UI in sync)
         const sel = document.getElementById("place-select");
         if (sel) sel.value = places[randomIdx][1].location;
+    }
+
+    async function getHint() {
+        try {
+            const res = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ location: place }),
+            });
+            const data = await res.json();
+            alert("Hint: " + data.reply);
+        } catch (err) {
+            console.error("Failed to get hint:", err);
+            alert("Sorry, hint bot isn't responding!");
+        }
     }
 
     return (
@@ -108,46 +134,47 @@ export default function initialize() {
                   location={place}
                 />
 
-                <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">Hot or Cold</h3>
+            <h3 id="hot-or-cold" className="pt-30 flex justify-center text-xl font-bold">
+                Hot or Cold
+            </h3>
 
-                <main className="pt-5 flex flex-col items-center min-h-screen">
-                    {/* dropdown + random button */}
-                    <div className="mb-4 flex gap-3 items-center">
-                        <select
-                            id="place-select"
-                            className="border border-gray-300 rounded-lg p-2"
-                            defaultValue={place}
-                            onChange={handleSelectChange}
-                        >
-                            {places.map((p, i) => (
-                                <option key={i} value={p[1].location}>
-                                    {p[1].location}
-                                </option>
-                            ))}
-                        </select>
+            <main className="pt-5 flex flex-col items-center min-h-screen">
+                <div className="mb-4 flex gap-3 items-center">
+                    <select
+                        id="place-select"
+                        className="border border-gray-300 rounded-lg p-2"
+                        defaultValue={place}
+                        onChange={handleSelectChange}
+                    >
+                        {places.map((p, i) => (
+                            <option key={i} value={p[1].location}>
+                                {p[1].location}
+                            </option>
+                        ))}
+                    </select>
 
-                        <button
-                            className="px-3 py-2 border rounded bg-white"
-                            onClick={pickRandom}
-                        >
-                            Random
-                        </button>
-                    </div>
+                    <button className="px-3 py-2 border rounded bg-white" onClick={pickRandom}>
+                        Random
+                    </button>
 
-                    <div id="street-view" className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600" />
-                </main>
-            </div>
+                    <button
+                        className="px-3 py-2 border rounded bg-yellow-300 hover:bg-yellow-400"
+                        onClick={getHint}
+                    >
+                        AI Tip 🤔
+                    </button>
+                </div>
 
-            <div id="distance-display"></div>
-
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXu9uxRvpLthoY9qxONXv9_yXDoB9cklU&callback=initialize&v=weekly"
-                defer
-            ></script>
+                <div
+                    id="street-view"
+                    className="w-[90%] h-[70vh] bg-gray-300 rounded-2xl shadow-inner flex justify-center items-center text-gray-600"
+                />
+            </main>
         </div>
-    )
+    );
 }
 
+// helper functions outside component
 function TestLocation(lat, lng) {
   // get the difference in latitude
   let latDist = Math.abs(destination[places.indexOf(currentPlace)][0].lat - lat)
@@ -163,22 +190,23 @@ function TestLocation(lat, lng) {
     window.openModal();
   } 
 
-  HotOrCold(difDist);
-
-  oldDifDist = difDist
+    HotOrCold(difDist);
+    oldDifDist = difDist;
 }
 
-// display
 function HotOrCold(newer) {
-  // change a header tag to "hotter" or "colder" as the player moves
-  const hintBox = document.getElementById("hot-or-cold")
-  if (newer > oldDifDist) {
-    hintBox.innerText = "Colder..."
-    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-blue-500"
-  } else if (oldDifDist > newer) {
-    hintBox.innerText = "Warmer..."
-    hintBox.className = "pt-30 flex justify-center text-xl font-bold text-red-500"
-  }
+    const hintBox = document.getElementById("hot-or-cold");
+    if (!hintBox) return;
+
+    if (newer > oldDifDist) {
+        hintBox.innerText = "Colder...";
+        hintBox.className =
+            "pt-30 flex justify-center text-xl font-bold text-blue-500";
+    } else if (oldDifDist > newer) {
+        hintBox.innerText = "Warmer...";
+        hintBox.className =
+            "pt-30 flex justify-center text-xl font-bold text-red-500";
+    }
 }
 
 
