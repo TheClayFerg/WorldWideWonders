@@ -1,4 +1,4 @@
-// File: /home/user/Documents/ByteJam/Project/WorldWideWonders/mapproject/app/api/chat/route.js
+// File: D:\Indian Hills\ByteJam2025\maketimedb\mapproject\app\api\chat\route.js
 import * as entry from '../../../../../../app/api/chat/route.js'
 import type { NextRequest } from 'next/server.js'
 
