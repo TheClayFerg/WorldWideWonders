@@ -1,4 +1,4 @@
-// File: /home/user/Documents/ByteJam/Project/WorldWideWonders/mapproject/app/layout.js
+// File: D:\Indian Hills\ByteJam2025\maketimedb\mapproject\app\layout.js
 import * as entry from '../../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

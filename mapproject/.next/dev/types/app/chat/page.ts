@@ -1,4 +1,4 @@
-// File: /home/user/Documents/ByteJam/Project/WorldWideWonders/mapproject/app/chat/page.js
+// File: D:\Indian Hills\ByteJam2025\maketimedb\mapproject\app\chat\page.js
 import * as entry from '../../../../../app/chat/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
