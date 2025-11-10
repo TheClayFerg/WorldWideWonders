@@ -1,4 +1,4 @@
-namespace MapApi.Models
+namespace MapApi.Data
 {
     public class Score
     {
