@@ -15,7 +15,6 @@ var places = [
   [{ lat: 51.499478209752645,  lng: -0.13307989206634516}, {location: 'Big Ben'}],
   [{ lat: 37.83746295614792,   lng: -122.47941782521923},  {location: 'The Golden Gate Bridge'}],
   [{ lat: 48.806942340957846,  lng: 2.133223974191376},    {location: 'The Palace of Versailles'}],
-  [{ lat: 35.36787231223111,   lng: 138.8610499351484},    {location: 'Mount Fuji'}],
   [{ lat: 20.694297159826963,  lng: -88.58618645865695},   {location: 'Chichen Itza'}]
  
 ]
@@ -27,9 +26,8 @@ var destination = [
   [{ lat: -33.856162361001275, lng: 151.21555560657174 }, {location: 'The Sydney Opera House'}],
   [{ lat: 43.722962919466866,  lng: 10.396104195604407},  {location: 'The Leaning Tower of pisa'}],
   [{ lat: 51.50096740041798,   lng: -0.1241623357433608}, {location: 'Big Ben'}],
-  [{ lat: 37.8276502293566,    lng: -122.48178307959817}, {location: 'The Golden Gate Bridge'}],
+  [{ lat: 37.83233390159084,    lng: -122.47332804550392}, {location: 'The Golden Gate Bridge'}],
   [{ lat: 48.80368473709394,   lng: 2.124536265468451},   {location: 'The Palace of Versailles'}],
-  [{ lat: 35.36454630360458,   lng: 138.73307837316136},  {location: 'Mount Fuji'}],
   [{ lat: 20.68303868723637,   lng: -88.57213387301465},  {location: 'Chichen Itza'}]
 ]
 
