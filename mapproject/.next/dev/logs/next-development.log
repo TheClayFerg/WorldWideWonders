@@ -1,4 +1,0 @@
-[00:00:02.800] Server  LOG      ✓ Ready in 2.3s
-[00:00:18.129] Server  LOG      ○ Compiling / ...
-[00:00:20.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:20.867] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
