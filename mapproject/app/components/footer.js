@@ -7,8 +7,9 @@ export default function Footer() {
                 <p className="text-sm">&copy; {new Date().getFullYear()} World Explorer. All rights reserved.</p>
                 <div className="flex space-x-4 mt-2 md:mt-0">
                     <Link href="/about" className="hover:text-gray-400">About</Link>
-                    <Link href="/" className="hover:text-gray-400">Nothing</Link>
-                    <Link href="/" className="hover:text-gray-400">Privacy Policy</Link>
+                    <Link href="https://www.linkedin.com/in/susan-wilson-b8753b44"
+                          target="_blank"
+                          rel="noopener noreferrer" className="hover:text-gray-400">Socials</Link>
                 </div>
             </div>
         </footer>

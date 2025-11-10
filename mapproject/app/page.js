@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import NavBar from "./components/NavBar"
-import WinModal from "./components/WinModal"
+import WinModal from "./components/winModal"
 
 import './globals.css'
 
