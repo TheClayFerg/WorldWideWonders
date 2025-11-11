@@ -15,25 +15,39 @@ namespace MapApi.Controllers
             _context = context;
         }
 
-        // GET: api/Scores
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Score>>> GetScores()
         {
-            // Return top 10 scores sorted descending
             return await _context.Scores
-                .OrderByDescending(s => s.Points)
-                .Take(10)
+                .OrderBy(s => s.Location)
+                .ThenBy(s => s.Time)
                 .ToListAsync();
         }
 
-        // POST: api/Scores
         [HttpPost]
-        public async Task<ActionResult<Score>> PostScore(Score score)
+        public async Task<ActionResult<Score>> PostScore(Score newScore)
         {
-            _context.Scores.Add(score);
+            if (string.IsNullOrWhiteSpace(newScore.PlayerName) || string.IsNullOrWhiteSpace(newScore.Location))
+                return BadRequest("PlayerName and Location are required.");
+
+            var existing = await _context.Scores
+                .FirstOrDefaultAsync(s => s.PlayerName == newScore.PlayerName && s.Location == newScore.Location);
+
+            if (existing != null)
+            {
+                if (newScore.Time < existing.Time)
+                {
+                    existing.Time = newScore.Time;
+                    _context.Entry(existing).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+                return Ok(existing);
+            }
+
+            _context.Scores.Add(newScore);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetScores), new { id = score.Id }, score);
+            return CreatedAtAction(nameof(GetScores), new { id = newScore.Id }, newScore);
         }
     }
 }
