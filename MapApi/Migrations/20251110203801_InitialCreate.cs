@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -21,10 +20,11 @@ namespace MapApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(type: "longtext", nullable: false)
+                    PlayerName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Points = table.Column<int>(type: "int", nullable: false),
-                    DateAchieved = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Location = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Time = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {

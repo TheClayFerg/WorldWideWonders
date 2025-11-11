@@ -25,7 +25,7 @@ namespace MapApi.Controllers
             if (existingUser == null)
             {
                 // Create a new user if not found
-                var newUser = new User { Username = request.Username, TotalScore = 0 };
+                var newUser = new User { Username = request.Username};
                 _context.Users.Add(newUser);
                 _context.SaveChanges();
                 return Ok(new { message = "New user created", user = newUser });

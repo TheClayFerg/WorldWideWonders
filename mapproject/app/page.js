@@ -76,9 +76,19 @@ export default function Initialize() {
     const [playerName, setPlayerName] = useState("name");
     const [time, setTime] = useState(0);
 
+    const [user, setUser] = useState(null);
+
     useEffect(() => {
     setPlace(places[currentIdx][1].location);
   }, [currentIdx]);
+
+  useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  if (storedUser) {
+    setUser(storedUser);            // ✅ now works
+    setPlayerName(storedUser.username); // update modal & score submission
+  }
+}, []);
 
   // initialize Google Street View
   useEffect(() => {
@@ -243,11 +253,38 @@ export default function Initialize() {
         console.log("setting time")
         setIsOpen(true);
         console.log("opening modal")
+
+        submitScore(elapsedTime / 1000, place);
       }
 
       HotOrCold(difDist);
       oldDifDist = difDist;
     }
+  async function submitScore(timeInSeconds, locationName) {
+  const user = JSON.parse(localStorage.getItem("user")); // make sure user is logged in
+  if (!user?.id) return;
+
+  const score = {
+    UserId: user.id,
+    LocationName: locationName,
+    TimeInSeconds: timeInSeconds,
+    Points: 0 // or calculate points
+  };
+
+  try {
+    const res = await fetch("http://localhost:5000/api/scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(score)
+    });
+
+    if (!res.ok) throw new Error("Failed to submit score");
+    const data = await res.json();
+    console.log("Score submitted:", data);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
   // display
   function HotOrCold(newer) {

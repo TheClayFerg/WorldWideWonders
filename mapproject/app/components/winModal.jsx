@@ -13,6 +13,32 @@ export default function WinModal({ isOpen, onClose, name, time, location }) {
   }, []);
   */
 
+  useEffect(() => {
+  if (isOpen) { // modal opened = player finished
+    async function submitScore() {
+      try {
+        const res = await fetch("http://localhost:5000/api/scores", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            playerName: name,
+            location: location,
+            time: parseFloat(time) // convert "42.7s" -> 42.7
+          })
+        });
+
+        if (!res.ok) throw new Error("Failed to submit score");
+
+        console.log("Score submitted:", await res.json());
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    submitScore();
+  }
+}, [isOpen]);
+
   if (!isOpen) return (null);
 
   // Only render modal if isOpen is true
